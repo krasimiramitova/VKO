@@ -1,4 +1,8 @@
 import './App.css';
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Nav from './components/Nav/Nav';
 import ProjectsPage from './pages/Projects/Projects';
 

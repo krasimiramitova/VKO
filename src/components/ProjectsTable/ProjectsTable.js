@@ -15,9 +15,9 @@ function ProjectsTable() {
         }
     ] ;
     return (
-        <div className="List" id = "projects" > 
+       <div className = "List" id = "projects" > 
             <table>
-                <thead>
+              <thead>
                     <tr>
                         <th> # </th>
                         <th> adress </th>
@@ -27,7 +27,7 @@ function ProjectsTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    { projectsAll.map( (pr : {...}, i:number) => {
+                    { projectsAll.map( (pr, i) => {
                         return (
                             <tr key={i}>
                                 <td> {pr.number} </td>
@@ -39,9 +39,9 @@ function ProjectsTable() {
                         )}
                     )}  
                 </tbody>
-            </table>
+                        </table>  
         </div>
       );
 }
 
-export default ProjectsTable; 
+export default ProjectsTable;
