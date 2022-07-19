@@ -1,8 +1,13 @@
-import ProjectsTable from "../../components/ProjectsTable/ProjectsTable";
+import React from "react";
+import ProjectsTable from "../../components/ProjectsTable/ProjectsTable"
 
 function ProjectsPage() {
   return (
-    <ProjectsTable/>
+    <div id="projects"> 
+      <div> Projects </div>
+      <ProjectsTable/>
+
+    </div>
   );
 }
 

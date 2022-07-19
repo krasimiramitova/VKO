@@ -1,0 +1,16 @@
+.free {
+  background-color: rgb(0, 237, 0);
+}
+
+.busy {
+  background-color: rgb(255, 0, 76); 
+}
+
+.break {
+  background-color: rgb(226, 208, 43);
+}
+
+.unavailable {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
