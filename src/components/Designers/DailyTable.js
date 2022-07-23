@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-function ProjectTable(props) {
+
+function DailyTable(props) {
     let projectData = [
         {   
             "projectTaskId":"1",
@@ -12,7 +12,7 @@ function ProjectTable(props) {
             "taskStatus":"complete",
             "taskStart":"01/01/21 10:30",
             "taskEnd":"01/02/21 9:15",
-            "taskDeadline":"01/02/21 14:00",       
+            "taskDeadline":"07/24/21 14:00",       
             "taskWorkingHours":"6:45",
             "comments":"",
         }, {
@@ -24,7 +24,7 @@ function ProjectTable(props) {
             "taskStatus":"complete",
             "taskStart":"01/02/21 10:30",
             "taskEnd":"01/02/21 10:30",
-            "taskDeadline":"01/02/21 10:30",       
+            "taskDeadline":"07/24/21 10:30",       
             "taskWorkingHours":"6:45",
             "comments":"",
         }, {
@@ -102,21 +102,53 @@ function ProjectTable(props) {
         }
     ] ;
 
-    const {projectNumber} = useParams();
-    let projects = projectData.filter(
-        project => {
-            if (project.projectNumber === projectNumber) {
-                return project;
-            }
+    let sortTableByWorkingHours = function(){
+        const [toDo, setToDo] = useState(projectData);
+        {toDo.sort( 
+         (a,b) => a.projectData.taskWorkingHours > b.projectData.taskWorkingHours ? 1 : -1)
+            console.log(toDo);
         }
-    )
 
+        { projectData.map( (tk, i) => {
+            return (
+                <tr key= {i}>
+                    <td className="prNumber"> {tk.projectNumber} </td>
+                    <td className="prStage"> {tk.projectStage} </td>
+                    <td className="task"> {tk.task} </td>
+                    <td className="tkDesigner"> {tk.designer} </td>
+                    <td className="tkStatus"> {tk.taskStatus} </td>
+                    <td className="tkStart"> {tk.taskStart} </td>
+                    <td className="tkEnd"> {tk.taskEnd} </td>
+                    <td className="tkDeadLine"> {tk.taskDeadline} </td>
+                    <td className="prHours"> {tk.taskWorkingHours} </td>
+                    <td className="comment"> {tk.comments} </td>
+                </tr>
+            )}
+        )}  
+        
+    }
+    
+
+/*   let selectedProject = projectData.filter(project => {
+        if (project.projectNumber === props.data[0].projectNumber) {
+          return project;
+      }
+    })
+
+ // const userCxt = useContext(UserContext);
+
+    const [project, setProject] = useState(selectedProject);
+    useEffect(() => {
+        setProject(selectedProject);
+    }, [props.data]) 
+
+*/
     return (
         <div className="List" id = "project" > 
-            <h1> {projectNumber} </h1>
             <table>
                 <thead>
                     <tr>
+                        <th className="prStage"> # </th>
                         <th className="prStage"> stage </th>
                         <th className="task"> task </th>
                         <th className="tkDesigner"> designer </th>
@@ -129,9 +161,11 @@ function ProjectTable(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    { projects.map( (tk, i) => {
+
+                    { projectData.map( (tk, i) => {
                         return (
                             <tr key= {i}>
+                                <td className="prNumber"> {tk.projectNumber} </td>
                                 <td className="prStage"> {tk.projectStage} </td>
                                 <td className="task"> {tk.task} </td>
                                 <td className="tkDesigner"> {tk.designer} </td>
@@ -147,7 +181,7 @@ function ProjectTable(props) {
                 </tbody>
             </table>
         </div>
-      );
+    );
 }
 
-export default ProjectTable; 
+export default DailyTable; 

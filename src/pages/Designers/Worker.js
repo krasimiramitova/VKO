@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Moment from 'react-moment';
 import { useState } from 'react';
 import moment from 'moment';
+import {useUserContext} from "../../contexts/UserContext";
 
 function ShowWorkerTasks(props) {
     let designerTasksData = [
@@ -11,7 +12,7 @@ function ShowWorkerTasks(props) {
             "projectNumber":"087",
             "projectName":"Mashpee",
             "task":"markup",
-            "taskStart":"06/19/2022, 5:57:12 pm",
+            "taskStart":"07/22/2022, 2:57:12 pm",
             "taskEnd":"",
             "taskWorkingHours":"",
             "taskStatus":"working",
@@ -84,11 +85,18 @@ function ShowWorkerTasks(props) {
             "taskDeadline":"07/24/2022, 11:00:00 am"
         }
     ] ;
+    
+    var sumWorkingHours = "";
+    let designerId = props.data[0].designerId;
+
     let selectedDesignerTasks = designerTasksData.filter(task => {
-          if (task.designerId === props.data[0].designerId) {
+          if (task.designerId === designerId) {
             return task;
         }
     })
+
+    const {user, isLoggedIn} = useUserContext(); 
+
     const [designerTasks, setDesignerTasks] = useState(selectedDesignerTasks);
     useEffect(() => {
         setDesignerTasks(selectedDesignerTasks);
@@ -116,59 +124,66 @@ function ShowWorkerTasks(props) {
         setDesignerTasks(tempDesignerTasks);
     }
 
-
     return (
         <div className="List" id = "projects" > 
+            <h2>{props.data[0].name} </h2>
             <table>
                 <thead>
                     <tr>
-                        <th> # </th>
-                        <th> name </th>
-                        <th> task </th>
-                        <th> start </th>
-                        <th> end </th>
-                        <th> working hours </th>
-                        <th> status </th>
-                        <th> comments </th>
-                        <th> deadline </th>
+                        <th className='num'> # </th>
+                        <th className='prName'> name </th>
+                        <th className='task'> task </th>
+                        <th className='tkStart' > start </th>
+                        <th className='tkEnd'> end </th>
+                        <th className='tkHours'> working hours </th>
+                        <th className='tkStatus'> status </th>
+                        <th className='comment'> comments </th>
+                        <th className='tkDeadLine'> deadline </th>
                     </tr>
                 </thead>
                 <tbody>
                     { designerTasks.map( (tk, i) => {
                         let end = "";
                         let workingHours = "";
-                        //let sumWorkingHours = "";
-                        let showStartButton = (<button onClick={() => {GetTimeStart(tk); } }> Start </button>); 
-                        let showEndButton = (<button onClick={() => {GetTimeEnd(tk); } }> End </button>);
-                        let start = (tk.taskStatus == "pending")? showStartButton : tk.taskStart;
-                        (tk.taskStatus == "working") && (end = showEndButton);
+                        let showStartButton = "";
+                        if (isLoggedIn() && user.designerId === designerId) {
+                            showStartButton = (<button onClick={() => {GetTimeStart(tk); } }> Start </button>); 
+                        }
+                        let showEndButton = "";
+                        if (isLoggedIn() && user.designerId === designerId) {
+                            showEndButton = (<button onClick={() => {GetTimeEnd(tk); } }> End </button>);
+                        }
+                        let start = ((tk.taskStatus == "pending"))? showStartButton : tk.taskStart;
+                        tk.taskStatus == "working" && (end = showEndButton);
                         if (tk.taskStatus === "complete") {
                             end = tk.taskEnd;
-                            workingHours = <Moment diff={start} unit="hours" decimal>{end}</Moment>;                    
+                            let tempStart = moment(tk.taskStart);
+                            let tempEnd = moment(tk.taskEnd);
+                            let duration = moment.duration(tempEnd.diff(tempStart));
+                            workingHours = duration.asHours().toFixed(2);
+                            sumWorkingHours = sumWorkingHours + workingHours;
                         }
-                    
-                        console.log(workingHours);
+
                         return (
                             <tr key= {i}>
-                                <td> {tk.projectNumber} </td>
-                                <td> {tk.projectName} </td>
-                                <td> {tk.task} </td>
-                                <td> {start} </td>
-                                <td> {end} </td>
-                                <td> {workingHours} </td>
-                                <td> {tk.taskStatus} </td>
-                                <td> {tk.comments} </td>
-                                <td> {tk.taskDeadline} </td>
+                                <td className='num'> {tk.projectNumber} </td>
+                                <td className='prName'> {tk.projectName} </td>
+                                <td className='task'> {tk.task} </td>
+                                <td className='tkStart'> {start} </td>
+                                <td className='tkEnd'> {end} </td>
+                                <td className='tkHours'> {workingHours} </td>
+                                <td className='tkStatus'> {tk.taskStatus} </td>
+                                <td className='comment'> {tk.comments} </td>
+                                <td className='tkDeadLine' > {tk.taskDeadline} </td>
                             </tr>
                         )}
-                    )} 
-                                         
-                            <tr>
-                                <td colSpan="4"> total </td>
-                                <td> total </td>
-                                <td> all  </td>
-                            </tr>
+                    )}
                     
+                        <tr>
+                            <td id="total" colSpan={4}> total hours  </td>
+                            <td className='tkHours'> {sumWorkingHours} </td>
+                        </tr>
+                                     
                 </tbody>
             </table>
         </div>

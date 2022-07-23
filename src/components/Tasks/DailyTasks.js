@@ -76,9 +76,9 @@ function DailyTasks() {
                 </thead>
                 <tbody>
                     { Tasks.map( (tk, i) => {
-                        let autorised = "false";
+//                        let autorised = "false";
                         let designer = "";
-                        if ( tk.designerName ) {
+/*                         if ( tk.designerName ) {
                             designer = tk.designerName;
                         } else {
                             if (autorised == "true" ) {
@@ -95,7 +95,7 @@ function DailyTasks() {
                         {
                              designer = tk.designerName ;
                         }
-
+*/
                         return (
                             <tr key= {i}>
                                 <td> {tk.projectNumber} </td>

@@ -1,4 +1,4 @@
-.App .MainContent {
+App, .MainContent {
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -6,57 +6,239 @@
   justify-content: space-between;
 }
 
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+  color: rgb(0, 237, 0);
+  text-align: left;
+}
 
-#MainMenu {
-  position: absolute;
+h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  color: rgb(0, 237, 0);
+  text-align: left;
+}
+
+
+.blank {
+  border-radius: 15px;
+  height: 40px;
+  border: solid 2px;
+  margin: 10px;
+  border-color: rgb(0, 237, 0);
+}
+
+.MainMenu, form {
+  margin: 0%;
+  position:absolute;
   top: 50%;
-  left: 36%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.happy {
+  margin: 0%;
+  position:absolute;
+  top: 20%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #SideMenu {
   position: absolute;
   top: 20%;
-  right: 20%;
+  left: 0px;
+  width: 10%;
+  -ms-transform: translate(-20%);
+  transform: translate(-20%);
 }
 
-.Button {
+.Page {
+  position: absolute;
+  width: 60%;
+  top: 10%;
+  left: 30%;
+  right: 200p;
+}
+
+button, .Button {
   margin: 10px;
   padding: 10px;
   position: relative;
+  text-decoration: none;
   border-radius: 15px;
-  border-color: whitesmoke;
+  border: none;
+  background-color: rgb(146, 226, 146);
   color: whitesmoke;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: x-large;
 }
 
+.TabButton {
+  margin: 1px;
+  padding: 10px;
+  position: relative;
+  text-decoration: none;
+  border: none;
+  background-color: rgb(0, 237, 0);
+  color: whitesmoke;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: x-large;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.WhiteTab {
+  margin: 1px;
+  padding: 10px;
+  position: relative;
+  text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: x-large;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: solid 2px;
+  border-bottom: none;
+  border-color: rgb(0, 237, 0);
+  background-color: whitesmoke;
+  color: rgb(0, 237, 0);
+}
+
+#TabMenu {
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  padding: 10px;
+  border-bottom: solid 4px ;
+  border-color: rgb(0, 237, 0);
+} 
+
+.Manage {
+  position: absolute;
+  margin-top: 38px;
+  top: 20%;
+  left: 0%;
+  padding: 10px;
+
+} 
+
 .Menu {
   background-color: rgb(0, 237, 0);
 }
 
+.Free, .Busy, .Break, .Unavailable {
+  color: whitesmoke;
+}
+
 .Free {
-  background-color: rgb(0, 237, 0);
+  background-color: rgb(0, 127, 0); 
 }
 
 .Busy {
-  background-color: rgb(255, 0, 76); 
+  background-color: rgb(190, 0, 0); 
 }
 
 .Break {
-  background-color: rgb(226, 208, 43);
+  background-color: rgb(0, 167, 167 );
 }
 
 .Unavailable {
-  color: white;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(104, 104, 104);
 }
 
 .List {
-  border-inline-start: 1px  ;
-  background-color: aqua;
-  border: solid; 
+  background-color: rgb(255, 255, 255);
+  border: none; 
+  display: block;
+}
+
+li {
+  margin: 50px;
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+  width: 75%;
+  border: solid 4px ;
+  border-color: rgb(0, 237, 0);
+}
+
+td, th {
+  padding: 8px;
+  text-align: center;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: solid;
   border-width: 2px;
+  border-color: rgb(0, 237, 0);
+}
+
+.prStage {
+  width: 200px ;
+}
+
+.task {
+  width: 200px ;
+}
+
+.tkDesigner {
+  width: 200px;
+}
+
+.tkStatus {
+  width: 200px;
+}
+
+.tkStart {
+  width: 200px;
+}
+
+.tkEnd {
+  width: 200px;
+}
+
+.tkDeadLine {
+  width: 200px;
+}
+
+.prHours {
+  width: 200px;
+}
+
+.comment {
+  width: 200px;
+}
+
+.num {
+  width: 200px;
+}
+
+.prName {
+  width: 200px;
+}
+
+.prStage {
+  width: 200px;
+}
+
+.prStatus {
+  width: 200px;
+}
+
+.prHours {
+  width: 200px;
 }
 
